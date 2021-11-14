@@ -1,0 +1,23 @@
+- authors: John Smith
+  title: A Title About Citations
+  key: ref1
+
+- authors: Michael's Rose
+  title: "[Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/markup-syntax-highlighting)"
+  key: highlight
+  
+- authors: Jon Gregory
+  title: "[The XVA Challenge, 4th Edition. 2020.](https://cvacentral.com/the-xva-challenge/)"
+  key: gregory
+
+- authors: BCBS-IOSCO
+  title: "[Margin Requirements for Non-Centrally Cleared Derivatives. 2015.](https://www.iosco.org/library/pubdocs/pdf/IOSCOPD480.pdf)"
+  key: bcbs_iosco
+  
+- authors: Michael Pyhtin and Dan Rosen
+  title: "[Pricing Counterparty Risk at the Trade Level and CVA Allocations. 2011.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1782063)"
+  key: pykhtin_rosen
+  
+- authors: ISDA
+  title: "[ISDA SIMM methodology, version 2.4. 2021.](https://www.isda.org/a/CeggE/ISDA-SIMM-v2.4-PUBLIC.pdf)"
+  key: "isda_simm"
