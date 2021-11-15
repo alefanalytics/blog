@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
-baseurl: "/"
-url: "https://alefanalytics.org/blog/"
+baseurl: "/blog"
+url: "https://alefanalytics.org"
 
 # THEME-SPECIFIC CONFIGURATION
 title: ALEF's blog                                      # site's title
