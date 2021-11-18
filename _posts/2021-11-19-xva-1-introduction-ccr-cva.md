@@ -45,7 +45,7 @@ Financial derivatives can serve many purposes, including:
 
 These contracts can be traded at an exchange, in this case they are called *listed* or *exchange-traded*, or bilateraly and in this case they are called *over-the-counter or OTC derivatives*
 
-{% include aligner.html images="posts/otc_success.png" column=1 %}
+{% include aligner.html images="posts/otc_success.png" column=1 caption="Evolution of the total outstanding notional of OTC derivatives"%}
 
 As no third party is involved in OTC derivatives, they can be flexible, allowing to match the exact need of the investor (e.g. tailor-made payoff) or the hedger (no basis risk). This flexibility has made them very successfull as shown by the rapid rise of their total outstanding notional during the 2000s, as illustrated in the above graph.
 
@@ -72,6 +72,8 @@ The drivers of the counterparty credit risk are :
 
 CCR is not as simple as lending risk because the future exposure is uncertain. For a loan, the exposure of the lender is simply the amount lent, while for an OTC derivative, the exposure will change with the market conditions.
 What's more, as this market value can be positive or negative depending on the market conditions, CCR is *bilateral* whereas for simple loans only the lender assumes lending risk.
+
+CCR is sometimes also called *replacement risk* or *pre-settlement risk*.
 
 ## Mitigants
 
@@ -118,6 +120,8 @@ To further mitigate CCR, financial institutions exchange *collateral*. The *Cred
 - *eligible collateral* types and currencies: cash, AAA bonds, etc.;
 - the *frequency* of collateral exchange, etc.
 
+Collateral agreements are signed between most banks, as well as some major non-financial institutions.
+
 In the presence of collateral balance of $$C$$, the exposure becomes:
 
 $$
@@ -130,30 +134,49 @@ The collateral can be:
 
 This will of course have an impact on whether the collateral can be recovered in the event of default, but let's not get into these details here.
 
-The collateral value $$C(t)$$ considered when computing the credit exposure at future date $$t$$ is actually the collateral held at $$t - MPOR$$. This is because any collateral exchange with the defaulting counterparty is assumed to have stopped starting this date and until the close-out at $$t$$. This is reflected in the next subsections.
+The collateral balance $$C(t)$$ considered when computing the credit exposure at future date $$t$$ is actually its value at $$t - MPOR$$.
+This is because any collateral exchange with the defaulting counterparty is assumed to have stopped starting this date and until the close-out at $$t$$. 
+This period is usually around 2 weeks.
+ 
+It is for this reason that the market value at $$t-MPOR$$ is considered when computing $$C(t)$$ in the next subsections.
 
 There are two types of collateral.
 
 **Variation Margin** 
 
-The first is *variation margin* and aims to track the variation of the aggregated market value. It is the difference between the collateral received and posted, and is usually computed as follows:
+The first is *variation margin* and aims to track the variation of the aggregated market value.
+
+The variation margin balance consists of the difference between the collateral received and posted. It is computed as the excess of postivie (resp. negative) market value above (resp. below) the threshold + MTA:
+Denoting $$H$$ the sum of the MTA and threshold amounts, and $$\bar{H}$$ the same quantity for the institution from the counterparty's point of view, that is:
 
 $$
-C_{VM}(t)= \left( V(t − MPOR) − H \right)^+ - \left( V(t − MPOR) + \bar{H}\right)^−
+C_\text{VM}(t)= \left( V(t − MPOR) − H \right)^+ - \left( V(t − MPOR) + \bar{H}\right)^−
 $$
 
-where $$H$$ denotes the sum of the MTA and threshold amounts, and $$\bar{H}$$ the same quantities for the institution from the counterpart's point of view.
+
+The following graphs illustrate this for a trajectory of market value.
+
+{% include aligner.html images="posts/variation_margin_lagged_MV.PNG" column=1 caption="Variation margin computation (1)" %}
+
+In the first graph, the market value $$V$$ is lagged by the MPOR, then compared to $$H$$ and $$-\bar{H}$$ to get the variation margin (illustrated in the next graph).
+Any exposure in the blue area is accepted, and variation margin aims at remove any excess.
+
+{% include aligner.html images="posts/variation_margin_exposure.PNG" column=1 caption="Variation margin computation (2)" %}
+
+The second graph illustrates the resulting variation margin collateral balance $$C(t)$$ and shows how it reduces the exposure $$E(t)$.
+Although it should in principle keep the exposure bellow $$H$$, this is not always the case due to the MPOR.
+
 
 **Initial Margin**
 
 As no variation margin exchange takes place during the MPOR, the market value can diverge significantly from the collateral balance during this period, due to changing market conditions.
 
-{% include aligner.html images="posts/im_vm.PNG" column=1 %}
+{% include aligner.html images="posts/im_vm.PNG" column=1 caption="Initial margin and variation margin" %}
 
 The initial margin aims to address this by covering losses due to market moves during the MPOR. It is usually computed as a quantile of market value variations over this period, with a confidence level $$\alpha$$:
 
 $$
-\mathbb{P} \left[ \Delta V (t - MPOR, t) > IM_\alpha(t) \right] = \alpha
+\mathbb{P} \left[ \Delta V (t - MPOR, t) > C_\text{IM}^{(\alpha)}(t) \right] = \alpha
 $$
 
 where $$\Delta V (t - MPOR, t)$$ denotes the market value variation between $$t - MPOR$$ and $$t$$ coming only from market conditions, excluding any cash flows paid or received during this time interval.
@@ -162,7 +185,7 @@ Cleared trades are subject to initial margin, computed by CCPs using proprietary
 
 For uncleared bilateral trades, initial margin was introduced in 2011 by the G20 leaders, which was translated into a set of requirements by BCBS and IOSCO[^1]. It is posted by both parties, and computed according to the ISDA SIMM™ methodology[^2] as a parametric value at risk with a threshold of USD 50M.
 
-Initial margin turns the CCR into a funding cost for the initial margin to post, thus replacing the CVA by the *MVA (margin valuation adjustment)*.
+Initial margin turns the CCR into a funding cost for the initial margin to post, thus highly reducing the CVA, and introducing a funding cost of the posted initial margin captured by the *MVA (margin valuation adjustment)*.
 
 # CCR metrics and the CVA
 
@@ -210,12 +233,12 @@ The PFE is the maximum future exposure at a specified future date with a given l
 Just like the EE, what is usually computed is a PFE profile:
 
 $$
-\mathbb{P}\left[ E(t_i) > PFE_\alpha(t_i) \right] = 1 - \alpha, \quad 1 \leq i \leq n
+\mathbb{P}\left[ E(t_i) > PFE^{(\alpha)}(t_i) \right] = 1 - \alpha, \quad 1 \leq i \leq n
 $$
 
 Unlike the value at risk, which considers the least favorable cases in terms of market value evolution (left hand side of the distribution), the PFE is concerned with the most favorable cases where we stand to lose the most in the event of counterparty default (right hand side of the distribution).
 
-{% include aligner.html images="posts/ee_pfe.PNG" column=1 %}
+{% include aligner.html images="posts/ee_pfe.PNG" column=1 caption="Expected market value, EE and PFE" %}
 
 The PFE is used for limits control. For a new trade to be authorised, the new PFE profile, including the candidate trade, has to be bellow the limits profile that is set by the risk department for this counterparty.
 
@@ -242,13 +265,13 @@ $$
 CVA = LGD \sum_{i=1}^n EE(t_i) \left(NDP(t_{i-1}) - NDP(t_i) \right)
 $$
 
-The CVA reduces the base price of the portfolio of transaction with the counterparty, to take into account the possibility of default:
+The CVA reduces the base value of the portfolio of transactions with the counterparty, to take into account the possibility of its default:
 
 $$
 V_\text{CCR} = V_\text{no CCR} - CVA
 $$
 
-It is a price adjustment and is destined to be hedged, all expectations above is taken under the risk-neutral measure.
+It is a value adjustment and is destined to be hedged, all expectations above is taken under the risk-neutral measure.
 
 ### Incremental and marginal CVA
 
@@ -264,7 +287,7 @@ $$
 This way, at the end of the day, the equality of the previous section is recovered, as the total CVA is the sum of incremental CVAs.
 
 One would be tempted to use this value also for other purposes such as accounting or risk-adjusted performance attribution. This would be a bad idea however, as the incremental CVA values depend on the order in which the trades are booked. 
-Think of two identical but opposite trades, the total CVA will be zero, the first one will have a positive incremental CVA and the second a negative one.
+Think of two identical but opposite trades with a new counterparty with which you have signed a netting agreement. The trade that is booked first will have a positive incremental CVA, and since the total CVA is zero as the two trades cancel out, the second trade will have a negative incremental CVA.
 
 For accounting and performance computations, attribution methods are used to allocate the total CVA on the trades[^4], giving each one a *marginal CVA*.
 Among the properties that an attribution method should satisfy is the independence on the order in which the trades have been booked.
@@ -308,12 +331,12 @@ CVA sensitivities are also computed and can be used for:
 
 In the CVA section, we stated that independence is assumed between the exposure and default. This is obviously not the case in reality, and correlation exists between them. It is called:
 - *Wrong Way Risk (WWR)* when positive: default more likely when exposure is high, leading to higher CVA;
-- *Right Way Risk (RWR)* when negative: default more likely when exposure is low, leading to lower CVA.
+- *Right Way Risk (RWR)* when negative: default more likely when exposure is low, leading to lower CVA. 
 
 One can distinguish between two typs of WWR:
 
 - *General WWR*, coming from macro-economic behavior, such as the dependance between default probabilites and general market risk-factors.
-- *specific WWR*, coming from the nature of the transactions with the counterparty.
+- *Specific WWR*, coming from the nature of the transactions with the counterparty.
 
 For example, having an exposure that increases when oil price goes higher with EasyJet. or buying protection on a CDS on Société Générale from BNP Paribas.
 General WWR can be diversified to some extent, while specific WWR must be avoided.
@@ -343,7 +366,7 @@ The diffusion and pricing models have to be rich enough, but cannot be too sophi
 So, usually, models with a small number of factors are favored.
 Furthermore, in terms of pricing methods, nested Monte Carlo or PDE cannot be afforded for exotics and American Monte-Carlo is usually used.
 
-This difference in pricing models and methods between CCR/CVA and the base pricing done by each trading desk can lead to price and exposure mismatches.
+This difference in pricing models and methods between CCR/CVA and the base pricing done by each trading desk can lead to market value and exposure mismatches.
 
 ## Computational challenge
 

@@ -1,14 +1,10 @@
-- authors: John Smith
-  title: A Title About Citations
-  key: ref1
-
-- authors: Michael's Rose
-  title: "[Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/markup-syntax-highlighting)"
-  key: highlight
-  
 - authors: Jon Gregory
   title: "[The XVA Challenge, 4th Edition. 2020.](https://cvacentral.com/the-xva-challenge/)"
   key: gregory
+
+- authors: Andrew Green
+  title: "[XVA. Credit, funding and capital valuation adjustments. 2016.](https://www.wiley.com/en-fr/XVA%3A+Credit%2C+Funding+and+Capital+Valuation+Adjustments-p-9781118556788)"
+  key: green
 
 - authors: BCBS-IOSCO
   title: "[Margin Requirements for Non-Centrally Cleared Derivatives. 2015.](https://www.iosco.org/library/pubdocs/pdf/IOSCOPD480.pdf)"
