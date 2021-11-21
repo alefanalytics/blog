@@ -146,7 +146,7 @@ There are two types of collateral.
 
 The first is *variation margin* and aims to track the variation of the aggregated market value.
 
-The variation margin balance consists of the difference between the collateral received and posted. It is computed as the excess of postivie (resp. negative) market value above (resp. below) the threshold + MTA:
+The variation margin balance consists of the difference between the collateral received and posted. It is computed as the excess of positive (resp. negative) market value above (resp. below) the threshold + MTA.
 Denoting $$H$$ the sum of the MTA and threshold amounts, and $$\bar{H}$$ the same quantity for the institution from the counterparty's point of view, that is:
 
 $$
@@ -156,14 +156,14 @@ $$
 
 The following graphs illustrate this for a trajectory of market value.
 
-{% include aligner.html images="posts/variation_margin_lagged_MV.PNG" column=1 caption="Variation margin computation (1)" %}
+{% include aligner.html images="posts/variation_margin_lagged_MV.PNG" column=1 caption="Variation margin computation: lagged MV" %}
 
 In the first graph, the market value $$V$$ is lagged by the MPOR, then compared to $$H$$ and $$-\bar{H}$$ to get the variation margin (illustrated in the next graph).
 Any exposure in the blue area is accepted, and variation margin aims at remove any excess.
 
-{% include aligner.html images="posts/variation_margin_exposure.PNG" column=1 caption="Variation margin computation (2)" %}
+{% include aligner.html images="posts/variation_margin_exposure.PNG" column=1 caption="Variation margin computation: collateral balance and exposure" %}
 
-The second graph illustrates the resulting variation margin collateral balance $$C(t)$$ and shows how it reduces the exposure $$E(t)$.
+The second graph illustrates the resulting variation margin collateral balance $$C(t)$$ and shows how it reduces the exposure $$E(t)$$.
 Although it should in principle keep the exposure bellow $$H$$, this is not always the case due to the MPOR.
 
 
