@@ -5,7 +5,7 @@ tags: [XVA, CVA, Counterparty credit risk]
 comments: true
 ---
 
-This post is the first of a series on valuation adjustments, abbreviated to XVA. Here, we start with an introduction to the Counterparty Credit Risk (CCR) and CVA.
+This article is the first of a series on valuation adjustments, abbreviated to XVA. Here, we start with an introduction to the Counterparty Credit Risk (CCR) and CVA.
 In particular, we will see what these terms mean, how they arise, how they are computed and for which purpose, and what challenges they raise.
 
 * TOC
