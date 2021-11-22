@@ -173,10 +173,10 @@ As no variation margin exchange takes place during the MPOR, the market value ca
 
 {% include aligner.html images="posts/im_vm.PNG" column=1 caption="Initial margin and variation margin" %}
 
-The initial margin aims to address this by covering losses due to market moves during the MPOR. It is usually computed as a quantile of market value variations over this period, with a confidence level $$\alpha$$:
+The initial margin aims to address this by covering losses due to market moves during the MPOR. It is usually computed as a quantile of market value variations over this period, with a confidence level $$\alpha$$, for example $$99\%$$:
 
 $$
-\mathbb{P} \left[ \Delta V (t - MPOR, t) > C_\text{IM}^{(\alpha)}(t) \right] = \alpha
+\mathbb{P} \left[ \Delta V (t - MPOR, t) > C_\text{IM}^{(\alpha)}(t) \right] = 1 - \alpha
 $$
 
 where $$\Delta V (t - MPOR, t)$$ denotes the market value variation between $$t - MPOR$$ and $$t$$ coming only from market conditions, excluding any cash flows paid or received during this time interval.
