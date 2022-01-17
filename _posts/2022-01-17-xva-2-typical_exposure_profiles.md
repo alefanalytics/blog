@@ -2,7 +2,7 @@
 layout: post
 title: "XVA series - 2. Typical exposure profiles"
 tags: [XVA, CVA, Counterparty credit risk]
-comments: true
+comments: false
 ---
 
 In the previous article, we have introduced some common counterparty credit risk metrics such as the expected exposure (EE) and the potential future exposure (PFE) profiles.
