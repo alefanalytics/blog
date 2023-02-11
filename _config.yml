@@ -12,7 +12,7 @@ parent_website: https://alefanalytics.org               # Parent website
 # Header and footer text
 header_text: News, articles and insights                # Change Blog header text
 header_feature_image: assets/img/background_intro.jpg
-footer_text: 'Alef Analytics &copy; 2022. All rights reserved. Based on the <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> theme.'
+footer_text: 'Alef Analytics &copy; 2023. All rights reserved. Based on the <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> theme.'
   #Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
 # Blog
