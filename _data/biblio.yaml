@@ -17,3 +17,11 @@
 - authors: ISDA
   title: "[ISDA SIMM methodology, version 2.4. 2021.](https://www.isda.org/a/CeggE/ISDA-SIMM-v2.4-PUBLIC.pdf)"
   key: "isda_simm"
+  
+- authors: Emmanuel Gobet
+  title: "[Advanced Monte Carlo methods for barrier and related exotic options. 2009.](https://hal.archives-ouvertes.fr/hal-00319947/document)"
+  key: gobet
+  
+- authors: Giovanni Cesari, John Aquilina, Niels Charpillon, Zlatko Filipovic, Gordon Lee, Ion Manda
+  title: "[Modelling, Pricing, and Hedging Counterparty Credit Exposure, A Technical Guide](https://link.springer.com/book/10.1007/978-3-642-04454-0)"
+  key: cesari
