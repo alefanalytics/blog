@@ -25,3 +25,7 @@
 - authors: Giovanni Cesari, John Aquilina, Niels Charpillon, Zlatko Filipovic, Gordon Lee, Ion Manda
   title: "[Modelling, Pricing, and Hedging Counterparty Credit Exposure, A Technical Guide](https://link.springer.com/book/10.1007/978-3-642-04454-0)"
   key: cesari
+
+- authors: Francis A. Longstaff, Eduardo S. Schwartz
+  title: "[Valuing American Options by Simulation: A Simple Least-Squares Approach](https://people.math.ethz.ch/~hjfurrer/teaching/LongstaffSchwartzAmericanOptionsLeastSquareMonteCarlo.pdf)"
+  key: longstaff
