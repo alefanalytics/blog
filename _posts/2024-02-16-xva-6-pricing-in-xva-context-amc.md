@@ -18,10 +18,10 @@ This article presents American Monte Carlo, that is used to compute these market
 
 American and Bermuda style options valuation is a challenging problem in finance. Unlike European options, they have many exercise dates. 
 
-The pricing is done assuming that the option holder will exercise at the optimal exercise date. Denoting $$t_1<t_2<\dots<t_n$$ the exercise dates, the option value has the following expression:
+The pricing is done assuming that the option holder will exercise at the optimal exercise date $$\tau^\ast$$. Denoting $$t_1<\dots<t_n$$ the exercise dates, and $$\mathcal{T}_{1,n}$$ the set of stopping times with values in $$\{t_1, \dots, t_n\}$$, the option value has the following expression:
 
 $$
-V(0) = \max_{1 \leq k \leq n} \mathbb{E}\left[ e^{-\int_0^{t_k} r(u)du} \text{Payoff}(t_k) \right]
+V(0) = \mathbb{E}\left[ e^{-\int_0^{\tau^\ast} r(u)du} \text{Payoff}(\tau^\ast) \right] = \max_{\tau \in \mathcal{T}_{1,n}} \mathbb{E}\left[ e^{-\int_0^{\tau} r(u)du} \text{Payoff}(\tau) \right]
 $$
 
 To compute it, at each exercise date $$t_i$$ starting from the last one, the exercise value given by the payoff of the option $$\text{Payoff}(t_i)$$, is compared with the continuation value $$C(t_i)$$, given by the price of a new option with the remaining future exercise dates: $$t_{i+1}, \dots, t_n$$.
