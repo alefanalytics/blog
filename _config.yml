@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
-baseurl: "/blog"
-url: "https://alefanalytics.org"
+url: "https://blog.alefanalytics.org"
+baseurl: ""
 
 # THEME-SPECIFIC CONFIGURATION
 title: ALEF's blog                                      # site's title
@@ -39,7 +39,7 @@ comments:
 
 # PAGINATION
 paginate: 5
-paginate_path: "/blog/page:num"
+paginate_path: "/page:num"
 
 # PORTFOLIO
 collections:
